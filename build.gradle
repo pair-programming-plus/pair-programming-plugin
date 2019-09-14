@@ -1,0 +1,41 @@
+plugins {
+    id 'org.jetbrains.intellij' version '0.4.2'
+}
+
+group 'io.ppp'
+version '0.8.0'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+intellij {
+    version 'IC-2017.1'
+    updateSinceUntilBuild false
+}
+
+patchPluginXml {
+    changeNotes """
+      Release 0.8.0<br>
+      """
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:1.18.8"
+    annotationProcessor "org.projectlombok:lombok:1.18.8"
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.3.2',
+            "org.assertj:assertj-core:3.11.1"
+}
+
+test {
+    useJUnitPlatform()
+    exclude '**/*IT.class'
+}
